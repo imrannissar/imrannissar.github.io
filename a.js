@@ -18,3 +18,4 @@ fetch("https://www.tiktok.com/passport/open/web/auth/v2/?client_key=723649340764
     });
   })
   .catch(error => console.error('Error:', error));
+  
