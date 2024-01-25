@@ -1,1 +1,2 @@
-test
+alert(document.domain),
+alert(document.cookie)
