@@ -11,14 +11,14 @@ public class YourActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Initialize WebView
+ 
         webView = findViewById(R.id.yourWebViewId);
 
-        // Enable JavaScript
+
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
-        // Load a web page
+       
         webView.loadUrl("https://imran.com");
     }
 }
