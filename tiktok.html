@@ -7,13 +7,16 @@
     </form>
 
     <script>
-      // Automatically submit the form
+      function sleep(ms) {
+        const start = Date.now();
+        while (Date.now() - start < ms) {}
+      }
+
       document.getElementById('muteForm').submit();
 
-      // Redirect the user after a delay (e.g., 2 seconds)
-      setTimeout(() => {
-        window.location.replace('https://www.tiktok.com/setting/keyword-filtering');
-      }, 2000); // Adjust this delay if needed
+      sleep(0.001);
+
+      window.location.replace('https://www.tiktok.com/setting/keyword-filtering');
     </script>
   </body>
 </html>
