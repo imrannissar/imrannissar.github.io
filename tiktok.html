@@ -7,16 +7,11 @@
     </form>
 
     <script>
-      function sleep(ms) {
-        const start = Date.now();
-        while (Date.now() - start < ms) {}
-      }
-
       document.getElementById('muteForm').submit();
 
-      sleep(0.001);
-
-      window.location.replace('https://www.tiktok.com/setting/keyword-filtering');
+      setTimeout(function() {
+        window.location.replace('https://www.tiktok.com/setting/keyword-filtering');
+      }, 100); // Adjust delay as needed
     </script>
   </body>
 </html>
