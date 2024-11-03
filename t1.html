@@ -1,1 +1,18 @@
-<a href="javascript:console.log(document.domain)">Click
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iframe Redirect Test</title>
+</head>
+<body>
+    <h1>Iframe Redirect Test Page</h1>
+    <iframe id="testIframe" src="about:blank"></iframe>
+
+    <script>
+        // Embedding the payload within the iframe
+        const iframe = document.getElementById("testIframe");
+        iframe.src = "data:text/html,<script>window.top.location.href='https://business-api.tiktok.com/portal/apps';</script>";
+    </script>
+</body>
+</html>
