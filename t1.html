@@ -10,9 +10,9 @@
     <iframe id="testIframe" src="about:blank"></iframe>
 
     <script>
-        // Embedding the payload within the iframe
+        // Correctly encoding the payload for the iframe
         const iframe = document.getElementById("testIframe");
-        iframe.src = "data:text/html,<script>window.top.location.href='https://business-api.tiktok.com/portal/apps';</script>";
+        iframe.src = "data:text/html,%3Cscript%3Ewindow.top.location.href%3D'https%3A%2F%2Ftargetedsite.com'%3B%3C%2Fscript%3E";
     </script>
 </body>
 </html>
