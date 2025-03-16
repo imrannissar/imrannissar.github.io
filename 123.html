@@ -1,7 +1,3 @@
 <script>
-  const payload = "<scr" + "ipt>alert('sandbox escaped via postMessage')<\/scr" + "ipt>";
-  parent.postMessage(
-    { cmd: "inject", payload: payload }, 
-    "*"
-  );
+ window.open("https://test.com/test", "_blank");
 </script>
