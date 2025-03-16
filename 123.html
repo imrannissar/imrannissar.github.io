@@ -1,4 +1,11 @@
 <script>
 // Escape by modifying parent page
-parent.document.body.innerHTML = "<h1>Hacked!</h1><script>alert('sandbox escaped')</script>";
+const h1 = parent.document.createElement('h1');
+h1.textContent = "Hacked!";
+parent.document.body.innerHTML = ''; // Optional: clears the body
+parent.document.body.appendChild(h1);
+
+const script = parent.document.createElement('script');
+script.textContent = "alert('sandbox escaped')";
+parent.document.body.appendChild(script);
 </script>
