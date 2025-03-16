@@ -1,11 +1,7 @@
 <script>
-window.addEventListener("message", (e) => {
-    if (e.origin.includes("ads.tiktok.com")) {
-        console.log("✅ Received session token = " + e.data);
-    }
-});
-
+// Send postMessage to the parent TikTok Ads page
 parent.postMessage({
-    action: "getSessionToken"
+    action: "redirectAuth",
+    type: "MAPI" // You can try with "TTAAPI" or "CMAPI" too
 }, "*");
 </script>
