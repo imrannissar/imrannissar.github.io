@@ -1,0 +1,23 @@
+<script>
+parent.postMessage({
+    action: "getSessionToken"
+}, "*");
+
+window.addEventListener("message", (e) => {
+    console.log(e.data);
+
+    if (e.origin.includes("ads.tiktok.com")) {
+        let token = "";
+
+        if (typeof e.data === "string") {
+            token = e.data;
+        } else if (typeof e.data === "object" && e.data.token) {
+            token = e.data.token;
+        } else {
+            token = JSON.stringify(e.data);
+        }
+
+        console.log(token);
+    }
+});
+</script>
