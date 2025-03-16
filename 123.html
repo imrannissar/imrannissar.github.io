@@ -1,5 +1,5 @@
 <script>
-    outer.postMessage({
+   parent.postMessage({
     action: "requestRedirectionTo",
     targetUrlStr: "https://attacker.com/evil"
 }, "*");
