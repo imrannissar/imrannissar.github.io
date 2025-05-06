@@ -1,8 +1,8 @@
 <script>
   const clientKey = "aw8cb3204x0a1g88";
-  const redirectUri = encodeURIComponent("https://ads.tiktok.com/login");
+  const redirectUri = encodeURIComponent("https://ads.tiktok.com/i18n/login/");
 
-  const url = `https://www.tiktok.com/v2/auth/authorize?client_key=${clientKey}&response_type=code&scope=user.info.basic,user.info.username&redirect_uri=${redirectUri}&state=your_custom_state`;
+  const url = `https://www.tiktok.com/v2/auth/authorize/?client_key=${clientKey}&disable_auto_auth=0&response_type=code&scope=user.setting.update,user.setting.list,bizpartner.user.info,bizpartner.item.info,biz.account.info,biz.account.phone,biz.account.email,user.info.basic,user.info.profile,user.info.stats,user.account.type,user.info.email,user.info.phone,video.list.no_watermark,video.list.private_ads.no_watermark,user.account.configure,video.list.manage,message.list.admin,biz.promote.create,biz.promote.upgrade_stats&lang=en&state=asd&disable_auto_auth=1&redirect_uri=${redirectUri}`;
 
   const authWindow = window.open(url, "_blank");
 
