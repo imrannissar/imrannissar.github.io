@@ -1,12 +1,12 @@
 <script>
-  const clientKey = "7480799711721439248";
-  const redirectUri = encodeURIComponent("https://tiktok.com");
-  const state = "custom_state_value";
-
-  const url = `https://www.tiktok.com/v2/auth/authorize?client_key=${clientKey}&response_type=code&scope=user.info.basic,user.info.username&redirect_uri=${redirectUri}&state=${state}`;
-
   parent.postMessage({
-    action: "requestRedirectionTo",
-    targetUrlStr: url
+    action: "submitAuthRequest",
+    url: "https://www.tiktok.com/passport/open/web/auth/v2/?client_key=7480799711721439248&scope=user.info.basic%2Cuser.info.username&aid=1459&state=custom_state_value&redirect_uri=https%3A%2F%2Ftiktok.com&source=web&response_type=code",
+    headers: {
+      "accept": "application/json, text/plain, */*",
+      "accept-language": "en-US,en;q=0.5",
+      "content-type": "application/json"
+    },
+    body: "{}"
   }, "*");
 </script>
