@@ -1,6 +1,6 @@
 <script>
   const clientKey = "7480799711721439248";
-  const redirectUri = encodeURIComponent("https://imran.com/callback");
+  const redirectUri = encodeURIComponent("https%3A%2F%2Ftiktok.com");
   const state = "custom_state_value";
 
   const url = `https://www.tiktok.com/v2/auth/authorize?client_key=${clientKey}&response_type=code&scope=user.info.basic,user.info.username&redirect_uri=${redirectUri}&state=${state}`;
