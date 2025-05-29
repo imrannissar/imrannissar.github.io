@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Starting Livestream</title>
+  <script>
+    window.onload = function() {
+      document.getElementById("status").innerText = "Livestreaming started...";
+      setTimeout(function() {
+        location.replace("https://webcast.tiktok.com/webcast/room/create/?user_language=en-US&locale=en-US&aid=641989&app_name=i18n_ecom_alliance&device_id=0&fp=&device_platform=web&cookie_enabled=true&screen_width=1710&screen_height=1107&browser_language=en-US&browser_platform=MacIntel&browser_name=Mozilla&browser_version=5.0+(Macintosh)&browser_online=true&timezone_name=Asia%2FKolkata&webcast_language=en-US&webcast_locale=en-US&page_scene=0&title=&gift_auth=1&chat_auth=1&hold_living_room=1&hashtag_id=&chat_sub_only_auth=2&screenshot_cover_status=1&age_restricted=0&ecom_bc_toggle=1&community_flagged_chat_auth=2&community_flagged_chat_review_auth=2&create_source=0&disable_preview_sub_only=1&open_commercial_content_toggle=true&commercial_content_promote_myself=true&commercial_content_promote_third_party=true&allow_preview_duration_exp=0&live_sub_only_use_music=0&optout_gift_gallery=true&spam_comments=1&comment_tray_switch=1&star_comment_switch=true&grant_group=1&star_comment_qualification=true&live_console=1&carrier_region=gb");
+      }, 1500); 
+    };
+  </script>
+</head>
+<body>
+  <p id="status">Please wait...</p>
+</body>
+</html>
