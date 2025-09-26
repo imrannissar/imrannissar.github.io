@@ -1,13 +1,24 @@
 <script>
-  const w = window.open('', '_blank'); // may be blocked if not user-initiated
+(function(){
+  // try open a popup
+  let w = null;
+  try { w = window.open('', '_blank'); } catch(e) { w = null; }
+
   const form = document.createElement('form');
   form.method = 'POST';
   form.action = 'https://imxx.requestcatcher.com/';
-  form.target = w.name;
   form.style.display = 'none';
-  const input = document.createElement('input');
-  input.name = 'app_id'; input.value = '12345';
-  form.appendChild(input);
-  document.body.appendChild(form);
-  form.submit();
+  form.innerHTML = '<input name="app_id" value="12345">';
+
+  if (w) {
+    form.target = w.name || '_blank';
+    document.body.appendChild(form);
+    form.submit();
+  } else {
+    // fallback: target _blank directly — browser might open a tab for the form submit
+    form.target = '_blank';
+    document.body.appendChild(form);
+    try { form.submit(); } catch(e){ console.warn('auto submit blocked', e); }
+  }
+})();
 </script>
