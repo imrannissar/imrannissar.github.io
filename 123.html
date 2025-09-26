@@ -1,24 +1,16 @@
+<button id="send">Send POST</button>
 <script>
-(function(){
-  // try open a popup
-  let w = null;
-  try { w = window.open('', '_blank'); } catch(e) { w = null; }
+document.getElementById('send').addEventListener('click', () => {
+  const w = window.open('', '_blank');
+  if (!w) return alert('Popup blocked — allow popups or click again');
 
   const form = document.createElement('form');
   form.method = 'POST';
   form.action = 'https://imxx.requestcatcher.com/';
+  form.target = w.name || '_blank';
   form.style.display = 'none';
   form.innerHTML = '<input name="app_id" value="12345">';
-
-  if (w) {
-    form.target = w.name || '_blank';
-    document.body.appendChild(form);
-    form.submit();
-  } else {
-    // fallback: target _blank directly — browser might open a tab for the form submit
-    form.target = '_blank';
-    document.body.appendChild(form);
-    try { form.submit(); } catch(e){ console.warn('auto submit blocked', e); }
-  }
-})();
+  document.body.appendChild(form);
+  form.submit();
+});
 </script>
