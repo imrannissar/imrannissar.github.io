@@ -1,16 +1,1 @@
-<button id="send">Send POST</button>
-<script>
-document.getElementById('send').addEventListener('click', () => {
-  const w = window.open('', '_blank');
-  if (!w) return alert('Popup blocked — allow popups or click again');
-
-  const form = document.createElement('form');
-  form.method = 'POST';
-  form.action = 'https://imxx.requestcatcher.com/';
-  form.target = w.name || '_blank';
-  form.style.display = 'none';
-  form.innerHTML = '<input name="app_id" value="12345">';
-  document.body.appendChild(form);
-  form.submit();
-});
-</script>
+<script>alert(0)</script>
