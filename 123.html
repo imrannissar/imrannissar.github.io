@@ -1,10 +1,7 @@
 <script>
 parent.postMessage({
-  action: "redirectAuth",
-  type: "CMAPI",
-  app_id: "7480799711721439248",
-  client_key: "awes0meClientKey",
-  redirect_uri: "https://yourdomain.com/callback",
-  scope: "user.info.basic,user.info.username,user.info.stats,user.account.type,user.insights,video.list,video.insights,comment.list,comment.list.manage,video.publish"
+  action: "requestRedirectionTo",
+  targetUrlStr: "https://www.tiktok.com/v2/auth/authorize?client_key=7480799711721439248&scope=biz.brand.insights%2Ccomment.list%2Cuser.info.basic%2Cuser.info.username%2Cuser.info.stats%2Cuser.info.profile%2Cuser.account.type%2Cuser.insights%2Cvideo.list%2Cvideo.insights%2Ccomment.list.manage%2Cvideo.publish%2Cvideo.upload%2Cbiz.spark.auth%2Cdiscovery.search.words%2Cbiz.ads.recommend%2Cbiz.creator.info%2Cbiz.creator.insights%2Ctcm.order.update%2Ctto.campaign.link&response_type=code&redirect_uri=https%3A%2F%2Ftiktok.com"
 }, "*");
+
 </script>
