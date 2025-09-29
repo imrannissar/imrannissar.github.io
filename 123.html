@@ -1,3 +1,11 @@
 <script>
-  parent.postMessage({  action: "requestRedirectionTo",  targetUrlStr: "asd:sadaasds" }, "*");
+window.parent.postMessage(
+  {
+    action: "redirectAuth",
+    type: "MAPI",
+    app_id: "7480799711721439248",
+    redirect_uri: "https://imran.com/"
+  },
+  "*"
+);
 </script>
