@@ -1,11 +1,10 @@
 <script>
-parent.postMessage(
-  {
-    action: "redirectAuth",
-    type: "MAPI",
-    app_id: "7480799711721439248",
-    redirect_uri: "https://imran.com/"
-  },
-  "*"
-);
+parent.postMessage({
+  action: "redirectAuth",
+  type: "CMAPI",
+  app_id: "7480799711721439248",
+  client_key: "awes0meClientKey",
+  redirect_uri: "https://yourdomain.com/callback",
+  scope: "user.info.basic,user.info.username,user.info.stats,user.account.type,user.insights,video.list,video.insights,comment.list,comment.list.manage,video.publish"
+}, "*");
 </script>
