@@ -1,15 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- TikTok Pixel Code Start -->
-<script>
-!function (w, d, t) {
-  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
-;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sample Product Page</title>
 
+  <!-- TikTok Pixel Code Start -->
+  <script>
+  !function (w, d, t) {
+    w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+  var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+  ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
 
-  ttq.load('D4BBBFJC77UBVM8P6790');
-  ttq.page();
-}(window, document, 'ttq');
-</script>
-<!-- TikTok Pixel Code End -->
+    ttq.load('D4BBBFJC77UBVM8P6790');
+    ttq.page();
+  }(window, document, 'ttq');
+  </script>
+  <!-- TikTok Pixel Code End -->
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background: #f6f6f6;
+    }
+    .product-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      margin: 10px 0;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .add-cart { background: #007bff; color: #fff; }
+    .checkout { background: #28a745; color: #fff; }
+    .shop-now { background: #ff5722; color: #fff; }
+  </style>
 </head>
+<body>
+
+<div class="product-container">
+  <h2>Premium Headphones</h2>
+  <p>High-quality wireless headphones with noise cancellation.</p>
+  <p><strong>₹4,999</strong></p>
+
+  <button class="shop-now" onclick="shopNow()">Shop Now</button>
+  <button class="add-cart" onclick="addToCart()">Add to Cart</button>
+  <button class="checkout" onclick="checkout()">Checkout</button>
+</div>
+
+<script>
+  function shopNow() {
+    ttq.track('ViewContent', {value: 4999, currency: 'INR'});
+    alert('Shop Now clicked');
+  }
+
+  function addToCart() {
+    ttq.track('AddToCart', {value: 4999, currency: 'INR'});
+    alert('Added to Cart');
+  }
+
+  function checkout() {
+    ttq.track('InitiateCheckout', {value: 4999, currency: 'INR'});
+    alert('Checkout Started');
+  }
+</script>
+
+</body>
+</html>
