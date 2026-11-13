@@ -1,0 +1,13 @@
+{
+  "client_id": "https://imuu.xyz/client.json",
+  "client_name": "Security Test",
+  "redirect_uris": [
+    "javascript:alert(document.domain)",
+    "javas\tcript:alert(1)",
+    "JAVASCRIPT:alert(1)",
+    "javascript:void(0)"
+  ],
+  "grant_types": ["authorization_code"],
+  "response_types": ["code"],
+  "token_endpoint_auth_method": "none"
+}
